@@ -28,8 +28,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
+    <Compile Include="MediaPlayerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Plugin.MediaManager">
+      <HintPath>..\..\..\Downloads\XamarinMediaManager-develop\MediaManager\bin\Release\Plugin.MediaManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.MediaManager.Abstractions">
+      <HintPath>..\..\..\Downloads\XamarinMediaManager-develop\MediaManager.Abstractions\bin\Release\Plugin.MediaManager.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

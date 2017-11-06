@@ -63,7 +63,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: hotdiggitydoddo@gmail.com (2EASER2X6F)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -81,6 +81,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Plugin.MediaManager.Abstractions">
+      <HintPath>..\..\..\Downloads\XamarinMediaManager-develop\MediaManager.Abstractions\bin\Release\Plugin.MediaManager.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.MediaManager">
+      <HintPath>..\..\..\Downloads\XamarinMediaManager-develop\MediaManager.iOS\bin\iPhone\Release\Plugin.MediaManager.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Exodus3\Exodus3.csproj">
@@ -110,6 +116,21 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="TabController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\star%402x.png" />
+    <BundleResource Include="Resources\star%403x.png" />
+    <BundleResource Include="Resources\list%403x.png" />
+    <BundleResource Include="Resources\list%402x.png" />
+    <BundleResource Include="Resources\list.png" />
+    <BundleResource Include="Resources\books%403x.png" />
+    <BundleResource Include="Resources\books%402x.png" />
+    <BundleResource Include="Resources\books.png" />
+    <BundleResource Include="Resources\feed%403x.png" />
+    <BundleResource Include="Resources\feed%402x.png" />
+    <BundleResource Include="Resources\feed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

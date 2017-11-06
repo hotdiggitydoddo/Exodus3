@@ -10,6 +10,8 @@ namespace Exodus3.iOS
     {
         // class-level declarations
 
+        private TabController _tabController;
+
         public override UIWindow Window
         {
             get;
@@ -20,6 +22,13 @@ namespace Exodus3.iOS
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            _tabController = new TabController();
+            Window.RootViewController = _tabController;
+            Window.MakeKeyAndVisible();
+
+        //    UITabBar.Appearance.BackgroundColor = UIColor.Red;
 
             return true;
         }
