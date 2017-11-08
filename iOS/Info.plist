@@ -47,6 +47,13 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Brandon_med.otf</string>
+		<string>Fonts/Brandon_bld.otf</string>
 	</array>
 </dict>
 </plist>

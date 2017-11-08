@@ -24,11 +24,14 @@ namespace Exodus3.iOS
             // If not required for your application you can safely delete this method
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            _tabController = new TabController();
-            Window.RootViewController = _tabController;
-            Window.MakeKeyAndVisible();
 
-        //    UITabBar.Appearance.BackgroundColor = UIColor.Red;
+            _tabController = new TabController();
+            var navCtrl = new UINavigationController(_tabController);
+            navCtrl.NavigationBar.BarTintColor = new UIColor(47f / 255f, 43f / 255f, 33f / 255f, 1);
+            // navCtrl.NavigationBar.Translucent = false;
+
+            Window.RootViewController = navCtrl;
+            Window.MakeKeyAndVisible();
 
             return true;
         }

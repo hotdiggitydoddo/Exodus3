@@ -1,27 +1,68 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
-	<dependencies>
-		<deployment identifier="iOS" />
-		<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530" />
-	</dependencies>
-	<scenes>
-		<!--View Controller-->
-		<scene sceneID="EHf-IW-A2E">
-			<objects>
-				<viewController id="01J-lp-oVM" sceneMemberID="viewController">
-					<layoutGuides>
-						<viewControllerLayoutGuide type="top" id="Llm-lL-Icb" />
-						<viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok" />
-					</layoutGuides>
-					<view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-						<rect key="frame" x="0.0" y="0.0" width="600" height="600" />
-						<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
-						<color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite" />
-					</view>
-				</viewController>
-				<placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder" />
-			</objects>
-			<point key="canvasLocation" x="53" y="375" />
-		</scene>
-	</scenes>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.12156862745098039" blue="0.094117647058823528" alpha="1"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="9157" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="280"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.39215686274509803" green="0.27058823529411763" blue="0.074509803921568626" alpha="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="11148" translatesAutoresizingMaskIntoConstraints="NO" image="Images/faith.png">
+                                <rect key="frame" x="0.0" y="461.5" width="600" height="68"/>
+                                <constraints>
+                                    <constraint id="11633" firstAttribute="width" secondItem="11148" secondAttribute="height" multiplier="150:17"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="11161" translatesAutoresizingMaskIntoConstraints="NO" image="Images/e3-wheel.png">
+                                <rect key="frame" x="0.0" y="149.5" width="600" height="279"/>
+                                <constraints>
+                                    <constraint id="11622" firstAttribute="width" secondItem="11161" secondAttribute="height" multiplier="200:93"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.13725490196078433" green="0.12549019607843137" blue="0.094117647058823528" alpha="1"/>
+                        </variation>
+                        <constraints>
+                            <constraint id="9167" firstItem="Llm-lL-Icb" firstAttribute="bottom" secondItem="9157" secondAttribute="top" constant="20"/>
+                            <constraint id="9168" firstItem="9157" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="9169" firstItem="Ze5-6b-2t3" firstAttribute="leadingMargin" secondItem="9157" secondAttribute="leading" constant="20"/>
+                            <constraint id="9170" firstItem="9157" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" multiplier="4.2:9"/>
+                            <constraint id="11619" firstItem="Ze5-6b-2t3" firstAttribute="leadingMargin" secondItem="11161" secondAttribute="leading" constant="20"/>
+                            <constraint id="11620" firstItem="11161" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="11621" firstItem="11161" firstAttribute="centerY" secondItem="9157" secondAttribute="bottom" constant="9"/>
+                            <constraint id="11631" firstItem="Ze5-6b-2t3" firstAttribute="leadingMargin" secondItem="11148" secondAttribute="leading" constant="20"/>
+                            <constraint id="11632" firstItem="11148" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="11634" firstItem="11148" firstAttribute="top" secondItem="11161" secondAttribute="bottom" constant="33"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="star.png" width="20" height="20"/>
+        <image name="list.png" width="30" height="30"/>
+        <image name="books.png" width="30" height="30"/>
+        <image name="feed.png" width="30" height="30"/>
+        <image name="Images/e3-wheel.png" width="214" height="214"/>
+        <image name="Images/faith.png" width="480" height="63"/>
+    </resources>
 </document>
