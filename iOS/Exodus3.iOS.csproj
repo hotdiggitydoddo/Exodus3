@@ -103,6 +103,7 @@
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Resources\Icons\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -131,6 +132,7 @@
     <Compile Include="SermonViewController.designer.cs">
       <DependentUpon>SermonViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UITextViewFixed.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\star.png" />

@@ -10,12 +10,6 @@ namespace Exodus3.iOS
         {
         }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            var font = UIFont.FromName("BrandonGrotesque-Bold", 24f);
-            lblTitle.Font = font;
-
-        }
+       
     }
 }

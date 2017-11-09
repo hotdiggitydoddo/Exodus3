@@ -14,16 +14,8 @@ namespace Exodus3.iOS
     [Register ("SermonViewController")]
     partial class SermonViewController
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel lblTitle { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (lblTitle != null) {
-                lblTitle.Dispose ();
-                lblTitle = null;
-            }
         }
     }
 }
