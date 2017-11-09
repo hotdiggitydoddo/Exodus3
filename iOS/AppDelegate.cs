@@ -11,6 +11,7 @@ namespace Exodus3.iOS
         // class-level declarations
 
         private TabController _tabController;
+        private MediaPlayerViewController _mediaPlayerController;
 
         public override UIWindow Window
         {
@@ -18,20 +19,43 @@ namespace Exodus3.iOS
             set;
         }
 
+        //Public property to access our MainStoryboard.storyboard file
+        public UIStoryboard MainStoryboard
+        {
+            get { return UIStoryboard.FromName("Main", NSBundle.MainBundle); }
+        }
+
+
+        //Creates an instance of viewControllerName from storyboard
+        public UIViewController GetViewController(UIStoryboard storyboard, string viewControllerName)
+        {
+            return storyboard.InstantiateViewController(viewControllerName);
+        }
+
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
-            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+           // Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            _tabController = new TabController();
-            var navCtrl = new UINavigationController(_tabController);
-            navCtrl.NavigationBar.BarTintColor = new UIColor(47f / 255f, 43f / 255f, 33f / 255f, 1);
-            // navCtrl.NavigationBar.Translucent = false;
+            //_tabController = new TabController();
+            //var navCtrl = new UINavigationController(_tabController);
+            //navCtrl.NavigationBar.BarTintColor = new UIColor(47f / 255f, 43f / 255f, 33f / 255f, 1);
+            //// navCtrl.NavigationBar.Translucent = false;
+            ////Window.RootViewController = navCtrl;
 
-            Window.RootViewController = navCtrl;
-            Window.MakeKeyAndVisible();
+
+       //     Window.RootViewController = _mediaPlayerController;
+
+
+       //     Window.MakeKeyAndVisible();
+
+
+        
+
+
 
             return true;
         }

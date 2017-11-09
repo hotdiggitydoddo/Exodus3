@@ -107,7 +107,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Player.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -116,11 +115,22 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
+    <Compile Include="MediaPlayerViewController.cs" />
+    <Compile Include="MediaPlayerViewController.designer.cs">
+      <DependentUpon>MediaPlayerViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="TabController.cs" />
+    <Compile Include="TabController.designer.cs">
+      <DependentUpon>TabController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeriesViewController.cs" />
+    <Compile Include="SeriesViewController.designer.cs">
+      <DependentUpon>SeriesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SermonViewController.cs" />
+    <Compile Include="SermonViewController.designer.cs">
+      <DependentUpon>SermonViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\star.png" />
@@ -136,10 +146,8 @@
     <BundleResource Include="Resources\feed%402x.png" />
     <BundleResource Include="Resources\feed.png" />
     <BundleResource Include="Resources\Fonts\Brandon_bld.otf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
     <BundleResource Include="Resources\Fonts\Brandon_med.otf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
     <BundleResource Include="Resources\Images\e3-wheel.png" />
     <BundleResource Include="Resources\Images\faith.png" />

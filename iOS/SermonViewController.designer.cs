@@ -7,20 +7,22 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace Exodus3.iOS
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("SermonViewController")]
+    partial class SermonViewController
     {
         [Outlet]
-        UIKit.UIButton Button { get; set; }
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel lblTitle { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (Button != null) {
-                Button.Dispose ();
-                Button = null;
+            if (lblTitle != null) {
+                lblTitle.Dispose ();
+                lblTitle = null;
             }
         }
     }

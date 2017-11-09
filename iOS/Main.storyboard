@@ -1,51 +1,152 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="15551">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="208">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="209" sceneMemberID="viewController" customClass="MediaPlayerViewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="206"/>
+                        <viewControllerLayoutGuide type="bottom" id="207"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="210">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.098039215686274508" green="0.090196078431372548" blue="0.070588235294117646" alpha="1"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="238" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="242.5"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.31372549019607843" green="0.20784313725490197" blue="0.058823529411764705" alpha="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1606" translatesAutoresizingMaskIntoConstraints="NO" image="Images/e3-wheel.png">
+                                <rect key="frame" x="-4" y="173" width="383" height="151"/>
+                                <constraints>
+                                    <constraint id="1960" firstAttribute="width" secondItem="1606" secondAttribute="height" multiplier="150:59"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="563" firstItem="207" firstAttribute="top" secondItem="238" secondAttribute="bottom" multiplier="2.75:1"/>
+                            <constraint id="576" firstItem="238" firstAttribute="trailing" secondItem="210" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="589" firstItem="210" firstAttribute="leadingMargin" secondItem="238" secondAttribute="leading" constant="20"/>
+                            <constraint id="602" firstItem="206" firstAttribute="bottom" secondItem="238" secondAttribute="top" constant="20"/>
+                            <constraint id="1921" firstItem="210" firstAttribute="leadingMargin" secondItem="1606" secondAttribute="leading" constant="20"/>
+                            <constraint id="1934" firstItem="1606" firstAttribute="trailing" secondItem="210" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="1947" firstItem="1606" firstAttribute="centerY" secondItem="238" secondAttribute="bottom" constant="6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="211" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713" y="-716"/>
+        </scene>
+        <scene sceneID="15540">
+            <objects>
+                <viewController id="15541" sceneMemberID="viewController" customClass="SermonViewController" storyboardIdentifier="SermonViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="15536"/>
+                        <viewControllerLayoutGuide type="bottom" id="15537"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15542">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-Ac-vcx">
-                                <rect key="frame" x="131.5" y="353" width="151" height="30"/>
-                                <state key="normal" title="Hello World, Click Me!">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="21618" translatesAutoresizingMaskIntoConstraints="NO" text="    Judges">
+                                <rect key="frame" x="-4" y="42" width="383" height="45"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.098039215686274508" green="0.094117647058823528" blue="0.070588235294117646" alpha="1"/>
+                                <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="17"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.99215686274509807" green="0.7686274509803922" blue="0.20784313725490197" alpha="1"/>
+                                <constraints>
+                                    <constraint id="27230" firstItem="21618" firstAttribute="height" constant="45"/>
+                                </constraints>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.12549019607843137" blue="0.094117647058823528" alpha="1"/>
                         <constraints>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HiD-uS-i16"/>
-                            <constraint firstItem="oBE-Ac-vcx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YgX-7e-bMc"/>
+                            <constraint id="27204" firstItem="15542" firstAttribute="leadingMargin" secondItem="21618" secondAttribute="leading" constant="20"/>
+                            <constraint id="27217" firstItem="21618" firstAttribute="trailing" secondItem="15542" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="27243" firstItem="21618" firstAttribute="top" secondItem="15536" secondAttribute="bottom" constant="22"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Current Series" id="15543" image="list.png"/>
                     <connections>
-                        <outlet property="Button" destination="oBE-Ac-vcx" id="OkX-0Z-gth"/>
+                        <outlet property="lblTitle" destination="21618" id="name-outlet-21618"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15544" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-774" y="-161"/>
+        </scene>
+        <scene sceneID="15545">
+            <objects>
+                <viewController id="15546" sceneMemberID="viewController" customClass="SeriesViewController" storyboardIdentifier="SeriesViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="15538"/>
+                        <viewControllerLayoutGuide type="bottom" id="15539"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15547">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.13333333333333333" green="0.12549019607843137" blue="0.094117647058823528" alpha="1"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Latest Sermon" id="15548" image="feed.png"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15549" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-747" y="-871"/>
+        </scene>
+        <scene sceneID="15550">
+            <objects>
+                <tabBarController id="15551" sceneMemberID="viewController" customClass="TabController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="15554" opaque="NO">
+                        <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="15546" kind="relationship" relationship="viewControllers" id="15552"/>
+                        <segue destination="15541" kind="relationship" relationship="viewControllers" id="15553"/>
+                        <segue id="20527" destination="20357" kind="relationship" relationship="viewControllers"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15555" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1651" y="-461"/>
+        </scene>
+        <scene sceneID="20356">
+            <objects>
+                <viewController id="20357" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="20354"/>
+                        <viewControllerLayoutGuide type="bottom" id="20355"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="20358">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Browse Library" id="20526" image="books.png"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="20359" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-45" y="-368"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination" type="retina55"/>
-    </simulatedMetricsContainer>
     <resources>
         <image name="star.png" width="20" height="20"/>
         <image name="list.png" width="30" height="30"/>
         <image name="books.png" width="30" height="30"/>
         <image name="feed.png" width="30" height="30"/>
+        <image name="Images/e3-wheel.png" width="214" height="214"/>
+        <image name="Images/faith.png" width="480" height="63"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina47"/>
+    </simulatedMetricsContainer>
 </document>
