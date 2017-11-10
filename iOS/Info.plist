@@ -55,5 +55,19 @@
 		<string>Fonts/Brandon_med.otf</string>
 		<string>Fonts/Brandon_bld.otf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIStatusBarTintParameters</key>
+	<dict>
+		<key>UINavigationBar</key>
+		<dict>
+			<key>Style</key>
+			<string>UIBarStyleDefault</string>
+			<key>Translucent</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

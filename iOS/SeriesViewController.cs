@@ -6,6 +6,8 @@ namespace Exodus3.iOS
 {
     public partial class SeriesViewController : UIViewController
     {
+        public string SeriesName { get; set; }
+
         public SeriesViewController (IntPtr handle) : base (handle)
         {
         }
@@ -18,10 +20,11 @@ namespace Exodus3.iOS
             txtAboutSeries.Font = UIFont.FromName("BrandonGrotesque-Medium", 20f);
             //txtAboutSeries.TextContainerInset = UIEdgeInsets.Zero;
             //txtAboutSeries.TextContainer.LineFragmentPadding = 0;
+            Title = "Current Series";
 
-            //title, and table source will be obtained via api call
-            Title = "Judges";
-            lblTitle.Text = "Judges";
+            //table source will be obtained via api call
+            SeriesName = "Judges";
+            lblTitle.Text = SeriesName;
             tblViewSermons.Source = new SermonsTableSource(new string[] { "First Sermon", "Second Sermon", "Third Sermon", "Fourth Sermon", "Fifth Sermon", "Sixth Sermon", "Seventh Sermon", "Eighth Sermon", "Ninth Sermon" }, this);
             tblViewSermons.BackgroundColor = UIColor.FromRGB(47f / 255f, 43f / 255f, 33f / 255f);
 
@@ -29,9 +32,6 @@ namespace Exodus3.iOS
             var frame = CoreGraphics.CGRect.Empty;
             frame.Height = 1;
             tblViewSermons.TableHeaderView = new UIView(frame);
-
-           // NavigationController.NavigationBarHidden = true;
-
         }
 
         public override void ViewWillAppear(bool animated)
@@ -75,9 +75,9 @@ namespace Exodus3.iOS
             var board = UIStoryboard.FromName("Main", null);
 
             var sermonCtrl = board.InstantiateViewController("SermonViewController") as SermonViewController;
-            sermonCtrl.Title = TableItems[indexPath.Section];
+            //sermonCtrl.Title = TableItems[indexPath.Section];
             sermonCtrl.SermonName = TableItems[indexPath.Section];
-            sermonCtrl.SeriesName = owner.Title;
+            sermonCtrl.SeriesName = owner.SeriesName;
 
             owner.NavigationController.PushViewController(sermonCtrl, true);
 
