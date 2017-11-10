@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exodus3.iOS", "iOS\Exodus3.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{6FB242CA-DEF1-4ECC-8913-5CD851808889}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exodus3.Api", "Exodus3.Api\Exodus3.Api.csproj", "{AC37688A-1757-419B-A899-2FC198F38C78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{306FB274-01A3-46AE-90B1-F4D23A96C2B1}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{306FB274-01A3-46AE-90B1-F4D23A96C2B1}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{306FB274-01A3-46AE-90B1-F4D23A96C2B1}.Debug|iPhone.Build.0 = Debug|iPhone
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Release|iPhone.Build.0 = Release|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{AC37688A-1757-419B-A899-2FC198F38C78}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7BF0046D-31FE-4798-BB66-1D1F881F1A65} = {6FB242CA-DEF1-4ECC-8913-5CD851808889}
