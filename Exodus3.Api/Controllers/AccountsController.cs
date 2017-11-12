@@ -1,6 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using Exodus3.Api.Data.Entities;
+﻿using System.Threading.Tasks;
+using Exodus3.Api.Data;
 using Exodus3.Api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

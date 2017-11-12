@@ -1,16 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Exodus3.Api.Helpers;
 using Exodus3.Api.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Exodus3.Api.Data.Entities;
 using Microsoft.Extensions.Logging;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.Linq;
+using Exodus3.Api.Data;
 
 namespace Exodus3.Api.Controllers
 {

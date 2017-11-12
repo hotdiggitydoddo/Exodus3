@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace Exodus3.Api.Data.Entities
+namespace Exodus3.Api.Data
 {
     public class ApplicationUser : IdentityUser<int>
     {

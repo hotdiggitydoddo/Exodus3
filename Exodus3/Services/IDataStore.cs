@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Exodus3.Domain;
 
-namespace Exodus3.Api.Data
+namespace Exodus3.Services
 {
-    public interface IRepository<T> where T : E3Entity
+    public interface IDataStore<T> where T : E3Entity
     {
         Task<IEnumerable<T>> Get(params Expression<Func<T, object>>[] includes);
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes);

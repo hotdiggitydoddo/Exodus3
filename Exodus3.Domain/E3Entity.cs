@@ -1,14 +1,12 @@
 ﻿using System;
-namespace Exodus3.Api.Data.Entities
+namespace Exodus3.Domain
 {
     public class E3Entity
     {
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
-
-        public E3Entity()
-        {
-        }
+        public bool IsDeleted { get; set; }
+       
     }
 }

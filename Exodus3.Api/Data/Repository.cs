@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Exodus3.Api.Data.Entities;
+using Exodus3.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Exodus3.Api.Data

@@ -1,5 +1,5 @@
 ﻿using System;
-using Exodus3.Api.Data.Entities;
+using Exodus3.Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,8 +26,6 @@ namespace Exodus3.Api.Data
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
-
-           
 
             builder.Entity<ApplicationUser>()
                 .HasMany(e => e.Roles)

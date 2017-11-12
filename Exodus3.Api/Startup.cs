@@ -1,6 +1,6 @@
 ﻿using Exodus3.Api.Data;
-using Exodus3.Api.Data.Entities;
 using Exodus3.Api.Helpers;
+using Exodus3.Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

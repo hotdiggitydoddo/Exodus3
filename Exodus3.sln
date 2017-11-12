@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{6FB242
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exodus3.Api", "Exodus3.Api\Exodus3.Api.csproj", "{AC37688A-1757-419B-A899-2FC198F38C78}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Exodus3.Domain", "Exodus3.Domain\Exodus3.Domain.shproj", "{5C2B914B-797E-49B5-A084-1CE05F332186}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
