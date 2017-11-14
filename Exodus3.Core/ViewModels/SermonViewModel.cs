@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Exodus3.Domain;
 
-namespace Exodus3.ViewModels
+namespace Exodus3.Core
 {
     public class SermonViewModel : BaseViewModel
     {

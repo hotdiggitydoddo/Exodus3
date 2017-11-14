@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Exodus3
+namespace Exodus3.Core
 {
     public sealed class ServiceLocator
     {

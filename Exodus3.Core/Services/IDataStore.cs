@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Exodus3.Domain;
 
-namespace Exodus3.Services
+namespace Exodus3.Core
 {
     public interface IDataStore<T> where T : E3Entity
     {

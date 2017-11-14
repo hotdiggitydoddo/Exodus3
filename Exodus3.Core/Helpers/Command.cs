@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Exodus3
+namespace Exodus3.Core
 {
     public sealed class Command<T> : Command
     {

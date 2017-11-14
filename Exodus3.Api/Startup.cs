@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Exodus3.Api
 {
@@ -53,10 +54,15 @@ namespace Exodus3.Api
                          };
                 });
 
+
+
             services.AddTransient<IRepository<Series>, Repository<Series>>();
             services.AddTransient<IRepository<Sermon>, Repository<Sermon>>();
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(o =>
+            {
+                o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +72,7 @@ namespace Exodus3.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
 
             app.UseAuthentication();
             app.UseStaticFiles();

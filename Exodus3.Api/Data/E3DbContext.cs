@@ -33,6 +33,7 @@ namespace Exodus3.Api.Data
                 .HasForeignKey(e => e.Id)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

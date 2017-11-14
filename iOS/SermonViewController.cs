@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
+using Exodus3.Core;
 
 namespace Exodus3.iOS
 {
@@ -14,9 +15,19 @@ namespace Exodus3.iOS
         {
         }
 
+       
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            if (string.IsNullOrWhiteSpace(SeriesName) && string.IsNullOrWhiteSpace(SermonName))
+            {
+                var sermon = App.Database.GetLastSermon().Result;
+                SermonName = sermon.Name;
+                SeriesName = sermon.SeriesItem.Name;
+                txtAboutSermon.Text = sermon.Summary;
+            }
+           
 
             btnPlaySermon.BackgroundColor = UIColor.FromRGB(251f / 255f, 206f / 255f, 69f / 255f);
             btnPlaySermon.Font = UIFont.FromName("BrandonGrotesque-Bold", 30f);
@@ -29,7 +40,6 @@ namespace Exodus3.iOS
             {
                 NavigationController.NavigationBar.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
                 NavigationController.NavigationBar.TintColor = UIColor.FromRGB(150f / 255f, 154f / 255f, 156f / 255f);
-                NavigationController.NavigationBar.TopItem.Title = SeriesName;
    
             }
 
@@ -44,7 +54,16 @@ namespace Exodus3.iOS
  
             };
         }
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
 
+            if (NavigationController.NavigationBar.TopItem.Title != null)
+                NavigationController.NavigationBar.TopItem.Title = null;
+     //       if (NavigationController.NavigationBar.BackItem != null)
+     //           NavigationController.NavigationBar.BackItem.Title = SeriesName;
+
+        }
 
 
     }

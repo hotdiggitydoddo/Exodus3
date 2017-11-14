@@ -14,10 +14,11 @@ namespace Exodus3.iOS
             //_latestSemonTab.TabBarItem = new UITabBarItem("Latest Sermon", UIImage.FromFile("feed.png"), 0);
 
             //Create an instance of our AppDelegate
-           
+        }
 
-
-          
+        public TabController()
+        {
+            
         }
 
         public override void ViewDidLoad()

@@ -20,7 +20,7 @@ namespace Exodus3.iOS
             txtAboutSeries.Font = UIFont.FromName("BrandonGrotesque-Medium", 20f);
             //txtAboutSeries.TextContainerInset = UIEdgeInsets.Zero;
             //txtAboutSeries.TextContainer.LineFragmentPadding = 0;
-            Title = "Current Series";
+
 
             //table source will be obtained via api call
             SeriesName = "Judges";
@@ -37,6 +37,7 @@ namespace Exodus3.iOS
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+            Title = SeriesName;
             NavigationController.NavigationBarHidden = true;
         }
 

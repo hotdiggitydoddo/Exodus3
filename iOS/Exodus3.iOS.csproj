@@ -87,26 +87,17 @@
     <Reference Include="Plugin.MediaManager">
       <HintPath>..\..\..\Downloads\XamarinMediaManager-develop\MediaManager.iOS\bin\iPhone\Release\Plugin.MediaManager.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core">
-      <HintPath>..\packages\SQLitePCLRaw.core.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.provider.sqlite3">
-      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_green">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite-net">
-      <HintPath>..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Exodus3\Exodus3.csproj">
-      <Project>{7BF0046D-31FE-4798-BB66-1D1F881F1A65}</Project>
-      <Name>Exodus3</Name>
+    <ProjectReference Include="..\Exodus3.Core\Exodus3.Core.csproj">
+      <Project>{4D9A3DA0-B8A9-47DA-8B03-53E6182AEF65}</Project>
+      <Name>Exodus3.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +140,11 @@
       <DependentUpon>SermonViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\UITextViewFixed.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="LoadingViewController.cs" />
+    <Compile Include="LoadingViewController.designer.cs">
+      <DependentUpon>LoadingViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\star.png" />

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Exodus3.Domain;
-using Exodus3.Services;
 
-namespace Exodus3.ViewModels
+namespace Exodus3.Core
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

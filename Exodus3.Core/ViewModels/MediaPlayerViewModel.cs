@@ -6,7 +6,7 @@ using Plugin.MediaManager.Abstractions.Enums;
 using Plugin.MediaManager.Abstractions.EventArguments;
 using Plugin.MediaManager.Abstractions.Implementations;
 
-namespace Exodus3
+namespace Exodus3.Core
 {
     public class MediaPlayerViewModel : INotifyPropertyChanged
     {

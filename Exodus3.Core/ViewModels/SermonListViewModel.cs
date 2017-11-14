@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Exodus3.ViewModels
+namespace Exodus3.Core
 {
     public class SermonListViewModel
     {

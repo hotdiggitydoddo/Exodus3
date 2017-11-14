@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using Exodus3.Core;
+using Exodus3.iOS.Helpers;
+using Foundation;
 using UIKit;
 
 namespace Exodus3.iOS
@@ -12,6 +14,8 @@ namespace Exodus3.iOS
 
         private TabController _tabController;
         private MediaPlayerViewController _mediaPlayerController;
+        private LoadingViewController _loadingVController;
+
 
         public override UIWindow Window
         {
@@ -38,24 +42,7 @@ namespace Exodus3.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
-           // Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
-            //_tabController = new TabController();
-            //var navCtrl = new UINavigationController(_tabController);
-            //navCtrl.NavigationBar.BarTintColor = new UIColor(47f / 255f, 43f / 255f, 33f / 255f, 1);
-            //// navCtrl.NavigationBar.Translucent = false;
-            ////Window.RootViewController = navCtrl;
-
-
-       //     Window.RootViewController = _mediaPlayerController;
-
-
-       //     Window.MakeKeyAndVisible();
-
-
-        
-
-
+            Load();
 
             return true;
         }
@@ -89,6 +76,28 @@ namespace Exodus3.iOS
         public override void WillTerminate(UIApplication application)
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+        }
+
+        private async void Load()
+        {
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+            var vc = GetViewController(MainStoryboard, "LoadingViewController");
+
+            Window.RootViewController = vc;
+            Window.MakeKeyAndVisible();
+
+            var fHelper = new FileHelper();
+            App.Init(fHelper.GetLocalFilePath(App.DB_FILE_NAME), new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS());
+
+            await App.Database.SyncCloudAndLocal();
+           
+
+            var root = GetViewController(MainStoryboard, "TabController");
+            root.View.Frame = Window.RootViewController.View.Frame;
+            root.View.LayoutIfNeeded();
+
+            UIView.Transition(Window, 0.3, UIViewAnimationOptions.TransitionCrossDissolve, () => { Window.RootViewController = root; }, () => { });
         }
     }
 }

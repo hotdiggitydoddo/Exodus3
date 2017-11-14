@@ -18,6 +18,9 @@ namespace Exodus3.Api.Data
 
         public async Task<T> Add(T entity)
         {
+
+            entity.CreatedOn = DateTime.UtcNow;
+            entity.UpdatedOn = entity.CreatedOn;
             _db.Set<T>().Add(entity);
             await _db.SaveChangesAsync();
             return entity;
