@@ -21,6 +21,7 @@ namespace Exodus3.Core
         public string Summary { get; set; }
         public string AudioSrcUrl { get; set; }
         public DateTime UpdatedOn { get; set; }
+        public DateTime Date { get; set; }
 
         [ForeignKey(typeof(SeriesItem))]
         public int SeriesItemId { get; set; }
@@ -85,9 +86,6 @@ namespace Exodus3.Core
 
             var remoteSeriesItems = await svc.GetRemoteStuff();
 
-
-
-
             using (var db = new SQLiteConnection(_sqlitePlatform, _dbPath))
             {
                 var allLocalSeries = db.GetAllWithChildren<SeriesItem>();
@@ -108,13 +106,79 @@ namespace Exodus3.Core
                                 Name = x.Name,
                                 Summary = x.Summary,
                                 AudioSrcUrl = x.AudioSrcUrl,
-                                UpdatedOn = x.UpdatedOn
-                            }).ToList()
+                                UpdatedOn = x.UpdatedOn,
+                                Date = x.Date
+                            }).ToList(),
+                            UpdatedOn = remoteSeries.UpdatedOn
                         };
 
                         db.InsertWithChildren(newSeries);
-
+                        continue;
                     }
+
+                    //get existing local series
+                    var localSeries = allLocalSeries.Single(x => x.Id == remoteSeries.Id);
+
+                    //if we're not updating or deleting either the series or any of its sermons, move on
+                    if (!remoteSeries.IsDeleted && remoteSeries.UpdatedOn == localSeries.UpdatedOn)
+                        continue;
+
+                    //handle deletion
+                    if (remoteSeries.IsDeleted)
+                    {
+                        db.Delete(localSeries, true);
+                        continue;
+                    }
+
+                    //crud actions on the sermons in the series
+                    foreach (var remoteSermon in remoteSeries.Sermons)
+                    {
+                        //add new sermon
+                        if (!localSeries.Sermons.Any(x => x.Id == remoteSermon.Id))
+                        {
+                            var newSermon = new SermonItem
+                            {
+                                Id = remoteSermon.Id,
+                                Name = remoteSermon.Name,
+                                Summary = remoteSermon.Summary,
+                                AudioSrcUrl = remoteSermon.AudioSrcUrl,
+                                UpdatedOn = remoteSermon.UpdatedOn,
+                                Date = remoteSermon.Date,
+                                SeriesItemId = localSeries.Id,
+                                SeriesItem = localSeries
+                            };
+
+                            localSeries.Sermons.Add(newSermon);
+                            db.UpdateWithChildren(localSeries);
+                            continue;
+                        }
+
+                        //get existing local sermon
+                        var localSermon = localSeries.Sermons.First(x => x.Id == remoteSermon.Id);
+
+                        //if we're not updating or deleting, move on
+                        if (!remoteSermon.IsDeleted && remoteSermon.UpdatedOn == localSermon.UpdatedOn)
+                            continue;
+
+                        //handle deletion
+                        if (remoteSermon.IsDeleted)
+                        {
+                            db.Delete(localSermon);
+                            continue;
+                        }
+
+                        //update local sermon from remote sermon
+                        localSermon.Name = remoteSermon.Name;
+                        localSermon.Summary = remoteSermon.Summary;
+                        localSermon.AudioSrcUrl = remoteSermon.AudioSrcUrl;
+                        localSermon.UpdatedOn = remoteSermon.UpdatedOn;
+                        localSermon.Date = remoteSermon.Date;
+
+                        db.Update(localSermon);
+                    }
+
+
+
                 }
                 return true;
             }

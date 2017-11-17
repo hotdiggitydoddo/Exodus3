@@ -65,6 +65,7 @@ namespace Exodus3.Api.Data
 
             if (existing != null)
             {
+                entity.UpdatedOn = DateTime.UtcNow;
                 _db.Update(entity);
                 return await _db.SaveChangesAsync() > 0;
             }

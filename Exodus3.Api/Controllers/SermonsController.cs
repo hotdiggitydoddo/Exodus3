@@ -12,10 +12,12 @@ namespace Exodus3.Api.Controllers
     public class SermonsController : Controller
     {
         private readonly IRepository<Sermon> _sermons;
+        private readonly IRepository<Series> _series;
 
-        public SermonsController(IRepository<Sermon> sermons)
+        public SermonsController(IRepository<Sermon> sermons, IRepository<Series> series)
         {
             _sermons = sermons;
+            _series = series;
         }
 
         [HttpGet]
@@ -43,6 +45,7 @@ namespace Exodus3.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Sermon sermon)
         {
+            
             var newSermon = new Sermon
             {
                 Summary = sermon.Summary,
@@ -53,7 +56,16 @@ namespace Exodus3.Api.Controllers
             };
 
             var res = await _sermons.Add(sermon);
+            UpdateSeriesUpdatedOn(sermon.SeriesId);
             return Json(res);
         }
+
+        private async Task<bool> UpdateSeriesUpdatedOn(int seriesId)
+        {
+            var series = await _series.GetById(seriesId);
+            return await _series.Update(series);
+        }
+
+
     }
 }
