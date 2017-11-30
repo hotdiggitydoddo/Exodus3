@@ -9,12 +9,19 @@
     <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\Series\" />
+    <Folder Include="Models\Sermons\" />
+    <Folder Include="Data\Entities\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Filters\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,5 +42,4 @@
     <Compile Remove="..\Exodus3.Domain\Series.cs" />
     <Compile Remove="..\Exodus3.Domain\Sermon.cs" />
   </ItemGroup>
-  <Import Project="..\Exodus3.Domain\Exodus3.Domain.projitems" Label="Shared" Condition="Exists('..\Exodus3.Domain\Exodus3.Domain.projitems')" />
 </Project>

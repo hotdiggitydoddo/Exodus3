@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Exodus3.Api.Data
 {
-    public class ApplicationUser : IdentityUser<int>
+    public class ApplicationUser : IdentityUser<Guid>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,7 +16,7 @@ namespace Exodus3.Api.Data
         /// <summary>
         /// Navigation property for the claims this user possesses.
         /// </summary>
-        public virtual ICollection<IdentityUserClaim<int>> Claims { get; } = new List<IdentityUserClaim<int>>();
+        public virtual ICollection<IdentityUserClaim<Guid>> Claims { get; } = new List<IdentityUserClaim<Guid>>();
         public ApplicationUser()
         {
         }

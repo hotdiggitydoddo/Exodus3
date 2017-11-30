@@ -34,7 +34,7 @@ namespace Exodus3.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> GenerateToken([FromBody] LoginViewModel model)
+        public async Task<IActionResult> GenerateToken([FromBody] LoginDto model)
         {
             if (ModelState.IsValid)
             {

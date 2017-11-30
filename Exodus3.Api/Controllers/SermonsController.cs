@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Exodus3.Api.Data;
-using Exodus3.Domain;
+using Exodus3.Api.Data.Entities;
+using Exodus3.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exodus3.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/sermons")]
     public class SermonsController : Controller
     {
         private readonly IRepository<Sermon> _sermons;
@@ -34,7 +35,7 @@ namespace Exodus3.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var sermon = await _sermons.GetById(id, x => x.Series);
 
@@ -43,7 +44,7 @@ namespace Exodus3.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Sermon sermon)
+        public async Task<IActionResult> Post([FromBody] NewSermonDto sermon)
         {
             
             var newSermon = new Sermon
@@ -55,15 +56,16 @@ namespace Exodus3.Api.Controllers
                 Date = sermon.Date
             };
 
-            var res = await _sermons.Add(sermon);
+            var res = await _sermons.Add(newSermon);
             UpdateSeriesUpdatedOn(sermon.SeriesId);
             return Json(res);
         }
 
-        private async Task<bool> UpdateSeriesUpdatedOn(int seriesId)
+        private async Task<bool> UpdateSeriesUpdatedOn(Guid seriesId)
         {
             var series = await _series.GetById(seriesId);
-            return await _series.Update(series);
+            return true;
+           // return await _series.Update(series);
         }
 
 

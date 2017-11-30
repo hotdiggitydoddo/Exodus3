@@ -72,7 +72,7 @@ namespace Exodus3.Core
             {
                 using (var db = new SQLiteConnection(_sqlitePlatform, _dbPath))
                 {
-                    return db.GetWithChildren<SermonItem>(2);
+                    return db.GetWithChildren<SermonItem>(1);
                 }
             });
            

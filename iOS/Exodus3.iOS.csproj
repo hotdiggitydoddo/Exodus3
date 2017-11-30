@@ -145,6 +145,10 @@
     <Compile Include="LoadingViewController.designer.cs">
       <DependentUpon>LoadingViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="LibraryViewController.cs" />
+    <Compile Include="LibraryViewController.designer.cs">
+      <DependentUpon>LibraryViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\star.png" />

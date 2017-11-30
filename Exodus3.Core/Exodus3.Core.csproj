@@ -77,6 +77,5 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Orm\" />
   </ItemGroup>
-  <Import Project="..\Exodus3.Domain\Exodus3.Domain.projitems" Label="Shared" Condition="Exists('..\Exodus3.Domain\Exodus3.Domain.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

@@ -14,7 +14,29 @@ namespace Exodus3.Api
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            //BuildWebHost(args).Run();
+
+            var webHost = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration((hostingCtx, cfg) =>
+                {
+                    var env = hostingCtx.HostingEnvironment;
+                    cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                       .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                    cfg.AddEnvironmentVariables();
+
+                })
+                .ConfigureLogging((hostingCtx, logging) =>
+                {
+                    logging.AddConfiguration(hostingCtx.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                })
+                .UseStartup<Startup>()
+                .Build();
+
+            webHost.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

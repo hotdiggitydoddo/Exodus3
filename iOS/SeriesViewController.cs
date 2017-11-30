@@ -92,10 +92,12 @@ namespace Exodus3.iOS
 
             //---- if there are no cells to reuse, create a new one
             if (cell == null)
-            { cell = new E3TableViewCell(UITableViewCellStyle.Default, CellIdentifier); }
+            { 
+                cell = new E3TableViewCell(UITableViewCellStyle.Default, CellIdentifier); 
+            }
 
             cell.TextLabel.Text = item;
-            
+            cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
             return cell;
         }
     }

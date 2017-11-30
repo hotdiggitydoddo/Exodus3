@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
 namespace Exodus3.Api.Migrations
@@ -22,7 +23,7 @@ namespace Exodus3.Api.Migrations
 
             modelBuilder.Entity("Exodus3.Api.Data.ApplicationRole", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<Guid>("Id");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -44,7 +45,7 @@ namespace Exodus3.Api.Migrations
 
             modelBuilder.Entity("Exodus3.Api.Data.ApplicationUser", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
@@ -96,55 +97,28 @@ namespace Exodus3.Api.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Exodus3.Domain.Series", b =>
+            modelBuilder.Entity("Exodus3.Api.Data.Entities.E3Entity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTimeOffset>("CreatedOn");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime>("UpdatedOn");
+                    b.Property<DateTimeOffset>("UpdatedOn");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Series");
+                    b.ToTable("E3Entity");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("E3Entity");
                 });
 
-            modelBuilder.Entity("Exodus3.Domain.Sermon", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AudioSrcUrl");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("SeriesId");
-
-                    b.Property<string>("Summary");
-
-                    b.Property<DateTime>("UpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SeriesId");
-
-                    b.ToTable("Sermons");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -153,7 +127,7 @@ namespace Exodus3.Api.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<int>("RoleId");
+                    b.Property<Guid>("RoleId");
 
                     b.HasKey("Id");
 
@@ -162,7 +136,7 @@ namespace Exodus3.Api.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -171,7 +145,7 @@ namespace Exodus3.Api.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -180,7 +154,7 @@ namespace Exodus3.Api.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -188,7 +162,7 @@ namespace Exodus3.Api.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -197,11 +171,11 @@ namespace Exodus3.Api.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
-                    b.Property<int>("RoleId");
+                    b.Property<Guid>("RoleId");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -210,9 +184,9 @@ namespace Exodus3.Api.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<string>("LoginProvider");
 
@@ -225,6 +199,70 @@ namespace Exodus3.Api.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Exodus3.Api.Data.Entities.Season", b =>
+                {
+                    b.HasBaseType("Exodus3.Api.Data.Entities.E3Entity");
+
+                    b.Property<int>("Number");
+
+                    b.Property<Guid>("SeriesId");
+
+                    b.HasIndex("SeriesId", "Number")
+                        .IsUnique();
+
+                    b.ToTable("Season");
+
+                    b.HasDiscriminator().HasValue("Season");
+                });
+
+            modelBuilder.Entity("Exodus3.Api.Data.Entities.Series", b =>
+                {
+                    b.HasBaseType("Exodus3.Api.Data.Entities.E3Entity");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.ToTable("Series");
+
+                    b.HasDiscriminator().HasValue("Series");
+                });
+
+            modelBuilder.Entity("Exodus3.Api.Data.Entities.Sermon", b =>
+                {
+                    b.HasBaseType("Exodus3.Api.Data.Entities.E3Entity");
+
+                    b.Property<string>("AudioSrcUrl")
+                        .IsRequired();
+
+                    b.Property<DateTimeOffset>("Date");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Sermon_Name")
+                        .HasMaxLength(100);
+
+                    b.Property<Guid?>("SeasonId");
+
+                    b.Property<Guid>("SeriesId")
+                        .HasColumnName("Sermon_SeriesId");
+
+                    b.Property<string>("Summary")
+                        .IsRequired();
+
+                    b.HasIndex("SeasonId");
+
+                    b.HasIndex("SeriesId");
+
+                    b.ToTable("Sermon");
+
+                    b.HasDiscriminator().HasValue("Sermon");
+                });
+
             modelBuilder.Entity("Exodus3.Api.Data.ApplicationRole", b =>
                 {
                     b.HasOne("Exodus3.Api.Data.ApplicationUser")
@@ -233,15 +271,7 @@ namespace Exodus3.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Exodus3.Domain.Sermon", b =>
-                {
-                    b.HasOne("Exodus3.Domain.Series", "Series")
-                        .WithMany("Sermons")
-                        .HasForeignKey("SeriesId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("Exodus3.Api.Data.ApplicationRole")
                         .WithMany()
@@ -249,7 +279,7 @@ namespace Exodus3.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.HasOne("Exodus3.Api.Data.ApplicationUser")
                         .WithMany("Claims")
@@ -257,7 +287,7 @@ namespace Exodus3.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.HasOne("Exodus3.Api.Data.ApplicationUser")
                         .WithMany()
@@ -265,7 +295,7 @@ namespace Exodus3.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
                     b.HasOne("Exodus3.Api.Data.ApplicationRole")
                         .WithMany()
@@ -278,11 +308,31 @@ namespace Exodus3.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.HasOne("Exodus3.Api.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Exodus3.Api.Data.Entities.Season", b =>
+                {
+                    b.HasOne("Exodus3.Api.Data.Entities.Series")
+                        .WithMany("Seasons")
+                        .HasForeignKey("SeriesId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Exodus3.Api.Data.Entities.Sermon", b =>
+                {
+                    b.HasOne("Exodus3.Api.Data.Entities.Season")
+                        .WithMany("Sermons")
+                        .HasForeignKey("SeasonId");
+
+                    b.HasOne("Exodus3.Api.Data.Entities.Series", "Series")
+                        .WithMany()
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
