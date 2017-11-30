@@ -4,17 +4,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Exodus3.Api.Helpers;
+using NLog.Extensions.Logging;
+using NLog;
 
 namespace Exodus3.Api.Filters
 {
     public class ApiExceptionFilter : ExceptionFilterAttribute
     {
-        //private readonly IHostingEnvironment _env;
+        private readonly Logger _logger;
 
-        //public ApiExceptionFilter(IHostingEnvironment env)
-        //{
-        //    _env = env;
-        //}
+        public ApiExceptionFilter()
+        {
+            _logger = LogManager.GetCurrentClassLogger();
+        }
 
         public override Task OnExceptionAsync(ExceptionContext context)
         {
@@ -29,14 +31,17 @@ namespace Exodus3.Api.Filters
                 apiError.Errors = ex.Errors;
 
                 context.HttpContext.Response.StatusCode = ex.StatusCode;
+
+                //logging
+                _logger.Warn($"Application thrown error: {ex.Message}", ex);
             }
             else if (context.Exception is UnauthorizedAccessException)
             {
                 apiError = new ApiError("Unauthorized Access");
                 context.HttpContext.Response.StatusCode = 401;
 
-
-                //handle logging here
+                //logging 
+                _logger.Warn($"Unauthorized Access in Controller Filter when trying to access {context.HttpContext.Request.Path}");
             }
             else
             {
@@ -55,6 +60,7 @@ namespace Exodus3.Api.Filters
                 context.HttpContext.Response.StatusCode = 500;
 
                 // handle logging here
+                _logger.Error(context.Exception, msg);
             }
 
             // always return a JSON result
