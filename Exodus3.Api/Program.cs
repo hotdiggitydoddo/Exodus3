@@ -15,7 +15,6 @@ namespace Exodus3.Api
     {
         public static void Main(string[] args)
         {
-            //BuildWebHost(args).Run();
             var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
@@ -26,7 +25,6 @@ namespace Exodus3.Api
                 logger.Error(ex, "Stopped program because of unhandled exception");
                 throw;
             }
-
 
             var webHost = new WebHostBuilder()
                 .UseKestrel()
@@ -39,13 +37,6 @@ namespace Exodus3.Api
                     cfg.AddEnvironmentVariables();
 
                 })
-                //.ConfigureLogging((hostingCtx, logging) =>
-                //{
-                //    logging.AddConfiguration(hostingCtx.Configuration.GetSection("Logging"));
-                //    logging.AddConsole();
-                //    logging.AddDebug();
-
-                //})
                 .UseStartup<Startup>()
                 .UseNLog()
                 .Build();

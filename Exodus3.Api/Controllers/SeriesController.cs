@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Exodus3.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/series")]
     public class SeriesController : Controller
     {
         private readonly ISeriesService _seriesService;
@@ -26,18 +26,8 @@ namespace Exodus3.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            try
-            {
-                var allSeries = await _seriesService.GetAllSeries();
-
-                return Ok(allSeries.ToList());
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get all series: {ex}.");
-                return BadRequest("Failed to get all series");
-            }
-
+            var allSeries = await _seriesService.GetAllSeries();
+            return Ok(allSeries.ToList());
         }
 
       
@@ -59,6 +49,13 @@ namespace Exodus3.Api.Controllers
             var newSeries = await _seriesService.CreateNewSeries(seriesModel);
 
             return CreatedAtRoute("GetById", new { id = newSeries.Id }, newSeries);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody] UpdateSeriesDto model)
+        {
+            
+            return Ok();
         }
 
         //[HttpPost("{id}/parts")]
