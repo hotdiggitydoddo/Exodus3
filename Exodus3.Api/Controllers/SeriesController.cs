@@ -30,8 +30,6 @@ namespace Exodus3.Api.Controllers
             return Ok(allSeries.ToList());
         }
 
-      
-
         [HttpGet("{id}", Name = "GetById")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -47,81 +45,21 @@ namespace Exodus3.Api.Controllers
         public async Task<IActionResult> Post([FromBody] NewSeriesDto seriesModel)
         {
             var newSeries = await _seriesService.CreateNewSeries(seriesModel);
-
             return CreatedAtRoute("GetById", new { id = newSeries.Id }, newSeries);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, [FromBody] UpdateSeriesDto model)
         {
-            
-            return Ok();
+            var res = await _seriesService.UpdateSeries(id, model);
+            return Ok(res);
         }
 
-        //[HttpPost("{id}/parts")]
-        //public async Task<IActionResult> CreateParts(Guid id, [FromBody] List<Guid> sermonIds)
-        //{
-        //    var series = await _series.GetById(id, x => x.Sermons);
-        //    var allSeriesParts = await _seriesParts.Find(x => x.SeriesId == series.Id);
-
-        //    var newPart = new SeriesPart
-        //    {
-        //        Number = !allSeriesParts.Any() ? 1 : allSeriesParts.Count() + 1,
-        //        SeriesId = series.Id,
-        //        //SermonIds = sermonIds.Distinct().Where(x => series.Sermons.Select(o => o.Id).Contains(x)).ToArray()
-        //    };
-
-        //    var result = await _seriesParts.Add(newPart);
-
-        //    return Json(result);
-        //}
-
-        //private SeriesDto CreateSeriesVm(Series series, IEnumerable<Season> seasons)
-        //{
-        //    var seriesModel = new SeriesDto
-        //    {
-        //        Id = series.Id,
-        //        Name = series.Name,
-        //        Description = series.Description
-        //    };
-
-        //    if (!seasons.Any())
-        //    {
-        //        seriesModel.Parts.Add(new SeriesPartDto
-        //        {
-        //            Number = 1,
-        //            Sermons = series.Sermons.Select(x => new SermonDto
-        //            {
-        //                Id = x.Id,
-        //                Name = x.Name,
-        //                Summary = x.Summary,
-        //                AudioSrcUrl = x.AudioSrcUrl,
-        //                Date = x.Date
-        //            }).ToList()
-        //        });
-        //    }
-        //    else
-        //    {
-        //        foreach (var part in seasons)
-        //        {
-        //            var sermons = series.Sermons.Where(x => part.Sermons.Contains(x));
-
-        //            seriesModel.Parts.Add(new SeriesPartDto
-        //            {
-        //                Number = part.Number,
-        //                Sermons = sermons.Select(x => new SermonDto
-        //                {
-        //                    Id = x.Id,
-        //                    Name = x.Name,
-        //                    Summary = x.Summary,
-        //                    AudioSrcUrl = x.AudioSrcUrl,
-        //                    Date = x.Date
-        //                }).ToList()
-        //            });
-        //        }
-        //    }
-
-        //    return seriesModel;
-        //}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id, bool hard = false)
+        {
+            await _seriesService.DeleteSeries(id, hard);
+            return NoContent();
+        }
     }
 }

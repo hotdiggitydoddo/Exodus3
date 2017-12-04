@@ -11,6 +11,7 @@ namespace Exodus3.Api.Data.Entities
 
         [Required]
         public Guid SeriesId { get; set; }
+        public Series Series { get; set; }
 
         public ICollection<Sermon> Sermons { get; } = new List<Sermon>();
     }

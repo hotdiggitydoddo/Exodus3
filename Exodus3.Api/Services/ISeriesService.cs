@@ -10,5 +10,7 @@ namespace Exodus3.Api.Services
         Task<IEnumerable<SeriesDto>> GetAllSeries();
         Task<SeriesDto> GetSeriesById(Guid id);
         Task<SeriesDto> CreateNewSeries(NewSeriesDto dto);
+        Task<SeriesDto> UpdateSeries(Guid id, UpdateSeriesDto dto);
+        Task DeleteSeries(Guid id, bool hard = false);
     }
 }

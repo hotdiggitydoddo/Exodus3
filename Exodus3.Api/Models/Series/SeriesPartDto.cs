@@ -5,6 +5,7 @@ namespace Exodus3.Api.Models
 {
     public class SeasonDto
     {
+        public Guid Id { get; set; }
         public int Number { get; set; }
         public List<SermonDto> Sermons { get; set; }
 

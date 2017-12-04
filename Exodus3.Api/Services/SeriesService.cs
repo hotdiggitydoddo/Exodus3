@@ -12,26 +12,28 @@ namespace Exodus3.Api.Services
     public class SeriesService : ISeriesService
     {
         private readonly IRepository<Series> _series;
+        private readonly IRepository<Sermon> _sermons;
+        private readonly IRepository<Season> _seasons;
         private readonly ILogger<SeriesService> _logger;
 
-        public SeriesService(IRepository<Series> series, ILogger<SeriesService> logger)
+        public SeriesService(IRepository<Series> series, IRepository<Sermon> sermons,
+            IRepository<Season> seasons, ILogger<SeriesService> logger)
         {
             _series = series;
+            _sermons = sermons;
+            _seasons = seasons;
             _logger = logger;
         }
 
         public async Task<SeriesDto> GetSeriesById(Guid id)
         {
             var series = await _series.GetById(id, x => x.Seasons);
-
             //if (series == null)
             //{
             //    _logger.LogError(500, $"Can't find series with id {id}.");
             //    return null;
             //}
-
             return ToDto(series);
-
         }
 
         public async Task<IEnumerable<SeriesDto>> GetAllSeries()
@@ -47,12 +49,41 @@ namespace Exodus3.Api.Services
             var newSeries = new Series
             {
                 Name = dto.Name,
-                Description = dto.Description
+                Description = dto.Description,
             };
-
+            newSeries.Seasons.Add(new Season { Number = 1 });
             await _series.Add(newSeries);
 
             return ToDto(newSeries);
+        }
+
+        public async Task<SeriesDto> UpdateSeries(Guid id, UpdateSeriesDto dto)
+        {
+            var series = await _series.GetById(id);
+            if (!string.IsNullOrWhiteSpace(dto.Name))
+                series.Name = dto.Name;
+            if (!string.IsNullOrWhiteSpace(dto.Description))
+                series.Description = dto.Description;
+            var updated = await _series.Update(series);
+            
+            return ToDto(series);
+        }
+
+        public async Task DeleteSeries(Guid id, bool hard = false)
+        {
+            var series = await _series.GetById(id, x => x.Seasons);
+
+            foreach (var season in series.Seasons)
+            {
+                season.Sermons.Clear();
+                foreach (var sermon in season.Sermons)
+                {
+                    sermon.Season = null;
+                    await _sermons.Update(sermon);
+                }
+                await _seasons.Delete(season);
+            }
+            await _series.Delete(series);
         }
 
         private SeriesDto ToDto(Series series)
@@ -64,6 +95,7 @@ namespace Exodus3.Api.Services
                 Description = series.Description,
                 Seasons = series.Seasons.Select(x => new SeasonDto
                 {
+                    Id = x.Id,
                     Number = x.Number,
                     Sermons = x.Sermons.Select(o => new SermonDto
                     {
@@ -71,7 +103,6 @@ namespace Exodus3.Api.Services
                     }).ToList()
                 }).ToList()
             };
-
             return dto;
         }
     }

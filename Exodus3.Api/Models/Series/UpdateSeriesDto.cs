@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Exodus3.Api.Models
 {
     public class UpdateSeriesDto
@@ -6,6 +8,6 @@ namespace Exodus3.Api.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; }      
     }
 }

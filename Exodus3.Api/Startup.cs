@@ -33,7 +33,7 @@ namespace Exodus3.Api
             services.AddDbContextPool<E3DbContext>(options =>
                 options.UseNpgsql(connStr));
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options => 
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {
                     options.Password.RequireNonAlphanumeric = false;
                     options.User.RequireUniqueEmail = true;
@@ -42,7 +42,8 @@ namespace Exodus3.Api
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
+                .AddJwtBearer(options =>
+                {
                     options.TokenValidationParameters =
                          new TokenValidationParameters
                          {
@@ -50,7 +51,7 @@ namespace Exodus3.Api
                              ValidateAudience = true,
                              ValidateLifetime = true,
                              ValidateIssuerSigningKey = true,
-                             
+
                              ValidIssuer = "Exodus3.Security.Bearer",
                              ValidAudience = "Exodus3.Security.Bearer",
                              IssuerSigningKey =
@@ -65,7 +66,7 @@ namespace Exodus3.Api
 
             services.AddMvc(options =>
             {
-               options.Filters.Add(new ApiExceptionFilter()); 
+                options.Filters.Add(new ApiExceptionFilter());
             })
             .AddJsonOptions(o =>
             {
@@ -78,7 +79,7 @@ namespace Exodus3.Api
         {
             if (env.IsDevelopment())
             {
-              //  app.UseDeveloperExceptionPage();
+                //  app.UseDeveloperExceptionPage();
             }
             //else 
             //{

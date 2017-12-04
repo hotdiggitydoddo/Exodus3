@@ -13,22 +13,22 @@ namespace Exodus3.Api.Controllers
     public class SermonsController : Controller
     {
         private readonly IRepository<Sermon> _sermons;
-        private readonly IRepository<Series> _series;
+        private readonly IRepository<Season> _Season;
 
-        public SermonsController(IRepository<Sermon> sermons, IRepository<Series> series)
+        public SermonsController(IRepository<Sermon> sermons, IRepository<Season> Season)
         {
             _sermons = sermons;
-            _series = series;
+            _Season = Season;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var sermons = await _sermons.Find(x => !x.IsDeleted, x => x.Series);
+            var sermons = await _sermons.Get(x => x.Season);
 
             foreach(var s in sermons)
             {
-                s.Series = new Series { Id = s.Series.Id, Name = s.Series.Name, Description = s.Series.Description };
+              //  s.Season = new Season { Id = s.Season.Id, Name = s.Season.Name, Description = s.Season.Description };
             }
 
             return Json(sermons);
@@ -37,10 +37,10 @@ namespace Exodus3.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var sermon = await _sermons.GetById(id, x => x.Series);
+            var sermon = await _sermons.GetById(id, x => x.Season);
 
 
-            return Json(new { sermon.Id, sermon.Name, sermon.Summary, sermon.AudioSrcUrl, series = new { sermon.Series.Id, sermon.Series.Name, sermon.Series.Description } });
+            return Json(new { sermon.Id, sermon.Name, sermon.Summary, sermon.AudioSrcUrl, Season = new { sermon.Season.Number, sermon.Season.Series } });
         }
 
         [HttpPost]
@@ -51,21 +51,21 @@ namespace Exodus3.Api.Controllers
             {
                 Summary = sermon.Summary,
                 Name = sermon.Name,
-                SeriesId = sermon.SeriesId,
+                //SeasonId = sermon.SeasonId,
                 AudioSrcUrl = sermon.AudioSrcUrl,
                 Date = sermon.Date
             };
 
             var res = await _sermons.Add(newSermon);
-            UpdateSeriesUpdatedOn(sermon.SeriesId);
+            UpdateSeasonUpdatedOn(sermon.SeriesId);
             return Json(res);
         }
 
-        private async Task<bool> UpdateSeriesUpdatedOn(Guid seriesId)
+        private async Task<bool> UpdateSeasonUpdatedOn(Guid SeasonId)
         {
-            var series = await _series.GetById(seriesId);
+            var Season = await _Season.GetById(SeasonId);
             return true;
-           // return await _series.Update(series);
+           // return await _Season.Update(Season);
         }
 
 

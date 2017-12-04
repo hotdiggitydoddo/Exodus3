@@ -42,7 +42,6 @@ namespace Exodus3.Api.Data
                .HasIndex(x => new { x.SeriesId, x.Number})
                .IsUnique();
 
-
             builder.Entity<E3Entity>().HasQueryFilter(x => !x.IsDeleted);
         }
 
@@ -60,9 +59,9 @@ namespace Exodus3.Api.Data
                      .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added))
             {
                 if (item.State == EntityState.Added)
-                    item.CurrentValues["CreatedOn"] = DateTime.UtcNow;
+                    item.CurrentValues["CreatedOn"] = new DateTimeOffset(DateTime.UtcNow);
 
-                item.CurrentValues["UpdatedOn"] = DateTime.UtcNow;
+                item.CurrentValues["UpdatedOn"] = new DateTimeOffset(DateTime.UtcNow);
             }
 
             return base.SaveChangesAsync(cancellationToken);

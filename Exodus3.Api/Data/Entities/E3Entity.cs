@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Exodus3.Api.Data.Entities
 {
-    public class E3Entity
+    public abstract class E3Entity
     {
         [Key]
         public Guid Id { get; set; }
