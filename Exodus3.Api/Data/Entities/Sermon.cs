@@ -18,7 +18,7 @@ namespace Exodus3.Api.Data.Entities
         [Required]
         public DateTimeOffset Date { get; set; }
 
-        public Guid SeasonId { get; set; }
+        public Guid? SeasonId { get; set; }
 
         public virtual Season Season { get; set; }
     }

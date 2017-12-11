@@ -9,7 +9,9 @@ namespace Exodus3.Api.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<Sermon, SermonDto>();
+            CreateMap<Sermon, SermonDto>()
+                .ReverseMap();
+            CreateMap<NewSermonDto, SermonDto>();
         }
     }
 }

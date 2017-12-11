@@ -46,18 +46,16 @@ namespace Exodus3.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] NewSermonDto sermon)
         {
-            
             var newSermon = new Sermon
             {
                 Summary = sermon.Summary,
                 Name = sermon.Name,
-                //SeasonId = sermon.SeasonId,
                 AudioSrcUrl = sermon.AudioSrcUrl,
-                Date = sermon.Date
+                Date = sermon.Date,
+                SeasonId = sermon.SeasonId
             };
 
             var res = await _sermons.Add(newSermon);
-            UpdateSeasonUpdatedOn(sermon.SeriesId);
             return Json(res);
         }
 

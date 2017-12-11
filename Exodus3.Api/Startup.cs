@@ -1,4 +1,5 @@
-﻿using Exodus3.Api.Data;
+﻿using AutoMapper;
+using Exodus3.Api.Data;
 using Exodus3.Api.Data.Entities;
 using Exodus3.Api.Filters;
 using Exodus3.Api.Helpers;
@@ -59,6 +60,8 @@ namespace Exodus3.Api
                          };
                 });
 
+            services.AddAutoMapper();
+
             services.AddTransient<IRepository<Series>, Repository<Series>>();
             services.AddTransient<IRepository<Sermon>, Repository<Sermon>>();
             services.AddTransient<IRepository<Season>, Repository<Season>>();
@@ -68,9 +71,9 @@ namespace Exodus3.Api
             {
                 options.Filters.Add(new ApiExceptionFilter());
             })
-            .AddJsonOptions(o =>
+            .AddJsonOptions(options =>
             {
-                o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
         }
 

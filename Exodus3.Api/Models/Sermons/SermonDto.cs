@@ -9,6 +9,6 @@ namespace Exodus3.Api.Models
         public string AudioSrcUrl { get; set; }
         public DateTimeOffset Date { get; set; }
 
-        public Guid? SeriesId { get; set; }
+        public Guid? SeasonId { get; set; }
     }
 }

@@ -86,6 +86,18 @@ namespace Exodus3.Api.Services
             await _series.Delete(series);
         }
 
+        public async Task<SeriesDto> AddSermon(NewSermonDto dto)
+        {
+            var newSeries = await _sermons.Add(new Sermon
+            {
+                SeasonId = dto.SeasonId,
+                Name = dto.Name,
+                Summary = dto.Summary,
+                Date = dto.Date
+            });
+            
+        }
+
         private SeriesDto ToDto(Series series)
         {
             var dto = new SeriesDto
